@@ -262,8 +262,8 @@ mod vec3 {
 
     #[test]
     fn cross() {
-        let a = Vec3 {x: 1f64, y: 0f64, z: 0f64};
-        let b = Vec3 {x: -1f64, y: 0f64, z: 0f64};
+        let a = Vec3 {x: 1f64, y: 10f64, z: 0f64};
+        let b = Vec3 {x: 0f64, y: 23f64, z: -12f64};
         let c = a.cross(&b);
         assert_eq!(a.dot(&c), 0f64);
         assert_eq!(b.dot(&c), 0f64);
