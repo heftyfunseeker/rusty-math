@@ -9,6 +9,10 @@ use std::ops::{
     DivAssign
 };
 
+//===============================================
+// Vec3 class
+
+#[derive(PartialEq, Debug)]
 pub struct Vec3 {
     pub x: f64,
     pub y: f64,
@@ -151,7 +155,7 @@ impl DivAssign<f64> for Vec3 {
 }
 
 //===============================================
-// Unit Tests
+// Vec3 Unit Tests
 
 //===============================================
 #[cfg(test)]
@@ -269,4 +273,50 @@ mod vec3 {
         assert_eq!(b.dot(&c), 0f64);
     }
 
+}
+
+
+//===============================================
+// Ray class
+
+#[derive(PartialEq, Debug)]
+pub struct Ray {
+    pub origin: Vec3,
+    pub dir: Vec3,
+}
+
+impl Ray {
+    pub fn point_at(&self, t: f64) -> Vec3 {
+        return &self.origin + &(&self.dir * t);
+    }
+}
+
+//===============================================
+// Ray Unit Tests
+
+//===============================================
+#[cfg(test)]
+mod ray {
+    use super::Ray;
+    use super::Vec3;
+
+    #[test]
+    fn point_at() {
+        let a = Vec3 {x: 1f64, y: 1f64, z: 0f64};
+        let b = Vec3 {x: 0f64, y: 3f64, z: 0f64};
+
+        let ray = Ray {
+            origin: a,
+            dir: b
+        };
+
+        let point = ray.point_at(2f64);
+
+        let expected_point = Vec3 {
+            x: 1f64,
+            y: 7f64,
+            z: 0f64
+        };
+        assert_eq!(point, expected_point);
+    }
 }
