@@ -155,6 +155,21 @@ impl DivAssign<f64> for Vec3 {
 }
 
 //===============================================
+// Ray class
+
+#[derive(PartialEq, Debug)]
+pub struct Ray {
+    pub origin: Vec3,
+    pub dir: Vec3,
+}
+
+impl Ray {
+    pub fn point_at(&self, t: f64) -> Vec3 {
+        return &self.origin + &(&self.dir * t);
+    }
+}
+
+//===============================================
 // Vec3 Unit Tests
 
 //===============================================
@@ -273,22 +288,6 @@ mod vec3 {
         assert_eq!(b.dot(&c), 0f64);
     }
 
-}
-
-
-//===============================================
-// Ray class
-
-#[derive(PartialEq, Debug)]
-pub struct Ray {
-    pub origin: Vec3,
-    pub dir: Vec3,
-}
-
-impl Ray {
-    pub fn point_at(&self, t: f64) -> Vec3 {
-        return &self.origin + &(&self.dir * t);
-    }
 }
 
 //===============================================
