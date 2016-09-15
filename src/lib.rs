@@ -19,7 +19,13 @@ pub struct Vec3 {
     pub z: f64,
 }
 
+
 impl Vec3 {
+    //===============================================
+    pub fn new(x: f64, y: f64, z: f64) -> Vec3 {
+        return Vec3 {x: x, y: y, z: z};
+    }
+
     //===============================================
     pub fn length_squared(&self) -> f64 {
         return
@@ -155,21 +161,6 @@ impl DivAssign<f64> for Vec3 {
 }
 
 //===============================================
-// Ray class
-
-#[derive(PartialEq, Debug)]
-pub struct Ray {
-    pub origin: Vec3,
-    pub dir: Vec3,
-}
-
-impl Ray {
-    pub fn point_at(&self, t: f64) -> Vec3 {
-        return &self.origin + &(&self.dir * t);
-    }
-}
-
-//===============================================
 // Vec3 Unit Tests
 
 //===============================================
@@ -234,7 +225,7 @@ mod vec3 {
 
     #[test]
     fn scale_assign() {
-        let mut a = Vec3 {x: 1f64, y: 2f64, z: 3f64};
+        let mut a = Vec3::new(1f64, 2f64, 3f64);
         a *= 3f64;
 
         assert_eq!(a.x, 3f64);
@@ -291,6 +282,26 @@ mod vec3 {
 }
 
 //===============================================
+// Ray class
+
+#[derive(PartialEq, Debug)]
+pub struct Ray {
+    pub origin: Vec3,
+    pub dir: Vec3,
+}
+
+
+impl Ray {
+    pub fn new(origin: Vec3, dir: Vec3) -> Ray {
+        return Ray {origin: origin, dir: dir };
+    }
+
+    pub fn point_at(&self, t: f64) -> Vec3 {
+        return &self.origin + &(&self.dir * t);
+    }
+}
+
+//===============================================
 // Ray Unit Tests
 
 //===============================================
@@ -304,10 +315,7 @@ mod ray {
         let a = Vec3 {x: 1f64, y: 1f64, z: 0f64};
         let b = Vec3 {x: 0f64, y: 3f64, z: 0f64};
 
-        let ray = Ray {
-            origin: a,
-            dir: b
-        };
+        let ray = Ray::new(a,b);
 
         let point = ray.point_at(2f64);
 
