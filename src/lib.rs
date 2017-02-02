@@ -116,6 +116,19 @@ impl<'a> Mul<f64> for &'a Vec3 {
 }
 
 //===============================================
+impl<'a> Mul<&'a Vec3> for &'a Vec3 {
+    type Output = Vec3;
+
+    fn mul(self, rhs: &Vec3) -> Vec3 {
+        Vec3 {
+            x: self.x * rhs.x,
+            y: self.y * rhs.y,
+            z: self.z * rhs.z
+        }
+    }
+}
+
+//===============================================
 impl<'a> Mul<&'a Vec3> for f64 {
     type Output = Vec3;
 
