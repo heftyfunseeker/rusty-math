@@ -1,3 +1,3 @@
-# rusty-math
+# rusty_math
 
-A simple math library for rust
+A simple Vec3 and Ray math library for rust
